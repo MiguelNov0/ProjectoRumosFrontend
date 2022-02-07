@@ -1,0 +1,19 @@
+<div class="col m-2 mt-5">
+    <a class="text-decoration-none text-dark" (click)="onClick()" >
+        <div class="row g-0 border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
+            <div class="col p-4 d-flex flex-column position-static">
+                <strong class="d-inline-block mb-2 text-success">{{user.firstName}} {{user.lastName}}</strong>
+                <h3 class="mb-0">{{recipe.name}}</h3>
+                <div class="mb-1 text-muted">
+                    {{recipe.creationDate|date:'mediumDate'}}                    
+                </div>
+                <div class="col-auto d-none d-lg-block">
+                    <img 
+                    src="{{recipe.imagePath}}"
+                    alt="recipe-thumbnail"
+                    class="card-image-top img-thumbnail">
+                </div>
+            </div>
+        </div>
+    </a>
+</div>

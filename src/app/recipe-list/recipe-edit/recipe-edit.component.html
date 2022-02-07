@@ -1,0 +1,214 @@
+<div class="container">
+    <div class="col-xs-12">
+        <form [formGroup]="recipeForm" (ngSubmit)="onSubmit()">
+            <div class="row">
+                <div class="col-xs-12">
+                    <button
+                        type="submit" 
+                        class="btn btn-success"
+                        [disabled]="!recipeForm.valid"
+                        >Guardar</button>
+                    <button type="submit" class="btn btn-danger" (click)="onCancel()">Cancelar</button>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xs-12">
+                    <div class="form-floating mb-3">
+                        
+                        <input
+                            type="text" 
+                            id="name" 
+                            class="form-control"
+                            formControlName="name"
+                        >
+                        <label for="name">Nome da Receita</label>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xs-12">
+                    <div class="form-floating mb-3">
+                        
+                        <input type="text" 
+                        id="imgPath" 
+                        class="form-control"
+                        formControlName="imgPath">
+                        <label for="imgPath">Imagem</label>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xs-12">
+                    <img src="{{recipeForm.value['imgPath']}}" alt="recipe-image" class="img-responsive">
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xs-12">
+                    <div class="">
+                        <label for="desc">Descrição</label>
+                        <angular-editor
+                        [config]="appComponent.config"
+                        name="richText"
+                        id="desc"
+                        class="form-control"
+                        formControlName="desc"></angular-editor>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xs-12">
+                    <div class="row">
+                        <div class="col-xs-3">
+                            <div class="form-floating mb-3">
+                                
+                                <select [(ngModel)]="difficultySelected" formControlName="difficulty" class="form-control">
+                                    <option *ngFor="let difficulty of difficultyLevels" [ngValue]="difficulty">{{difficulty.difficultyLevel}}</option>
+                                </select>
+                                <label for="difficulty">Dificuldade</label>
+                            </div>
+                        </div>
+                        <div class="col-xs-3">
+                            <div class="form-floating mb-3">
+                                
+                                <select [(ngModel)]="categorySelected" formControlName="category" class="form-control">
+                                    <option *ngFor="let category of categories" [ngValue]="category">{{category.categoryName}}</option>
+                                </select>
+                                <label for="category">Category</label>
+                            </div>
+                        </div>
+                        <div class="col-xs-3">
+                            <div class="form-floating mb-3">
+                                
+                                <input
+                                type="text" 
+                                id="portions" 
+                                class="form-control"
+                                formControlName="portions">
+                                <label for="portions">Porções</label>
+                            </div>
+                        </div>                
+                        <div class="col-xs-3">
+                            <div class="form-floating mb-3">
+                                <input
+                                type="text" 
+                                id="prepTime" 
+                                class="form-control"
+                                formControlName="prepTime">
+                                <label for="prepTime">Tempo de preparação</label>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xs-12">
+                    <div class="row">
+                        <div class="col-xs-2">
+                            <div class="form-floating mb-3">
+                                <input 
+                                type="checkbox"
+                                name="vegan"
+                                id="vegan"
+                                class="form-check-input"
+                                formControlName="isVegan">
+                                <label for="vegan">Vegano</label>
+
+                            </div>
+                        </div>
+                        <div class="col-xs-2">
+                            <div class="form-floating mb-3">
+                                <input 
+                                type="checkbox"
+                                name="vegetarian"
+                                id="vegetarian"
+                                class="form-check-input"
+                                formControlName="isVegetarian">
+                                <label for="vegetarian">Vegetariano</label>
+
+                            </div>
+                        </div>
+                        <div class="col-xs-2">
+                            <div class="form-floating mb-3">
+                                <input
+                                type="checkbox"
+                                name="lowC"
+                                id="lowC"
+                                class="form-check-input"
+                                formControlName="isLowCarb">
+                                <label for="lowC">Low-Carb</label>
+
+                            </div>
+                        </div>
+                        <div class="col-xs-2">
+                            <div class="form-floating mb-3">
+                                <input 
+                                type="checkbox"
+                                name="lfree"
+                                id="lfree"
+                                class="form-check-input"
+                                formControlName="isLactoFree">
+                                <label for="lfree">Sem Lactose</label>
+
+                            </div>
+                        </div>
+                        <div class="col-xs-2">
+                            <div class="form-floating mb-3">
+                                <input 
+                                type="checkbox"
+                                name="gfree"
+                                id="gfree"
+                                class="form-check-input"
+                                formControlName="isGlutenFree">
+                                <label for="gfree">Sem Glúten</label>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xs-12" formArrayName="ingredients">
+                    <div
+                        class="row"
+                        *ngFor="let ingredientCtrl of controls; let i = index"
+                        [formGroupName]="i">
+                        <div class="col-xs-6">
+                            <input type="text"  
+                            class="form-control"
+                            placeholder="Ingrediente"
+                            formControlName="ingredientName">
+                        </div>
+                        <div class="col-xs-2">
+                            <input type="text" 
+                            class="form-control"
+                            placeholder="Quantidade"
+                            formControlName="quantity">
+                        </div>
+                        <div class="col-xs-2">
+                        <input type="text" 
+                            class="form-control"
+                            placeholder="Medida"
+                            formControlName="measurement">
+                        </div>
+                        <div class="col-xs-2">
+                            <button 
+                            type="button"
+                            class="btn btn-danger"
+                            (click)="onDeleteIngredient(i)">X</button>
+                        </div>
+                    </div>
+                    <hr>
+                    <div class="row">
+                        <div class="col-xs-12">
+                            <button
+                            type="button" 
+                            class="btn btn-success"
+                            (click)="onAddIngredient()">Adicionar Ingrediente</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>

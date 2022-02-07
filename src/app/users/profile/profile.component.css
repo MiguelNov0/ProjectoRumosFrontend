@@ -1,0 +1,10 @@
+.profilephoto{
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    background-size: cover;
+    background-position:center;
+}
+.bg-blue{
+    background-color: #88c7db;
+}

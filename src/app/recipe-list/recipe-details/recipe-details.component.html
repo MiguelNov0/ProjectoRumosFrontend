@@ -1,0 +1,67 @@
+<div class="col-xs-12 mt-5">
+    <div class="row g-0 rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
+      <div class="col p-4 d-flex flex-column position-static">
+          <div class="col mb-3 d-flex flex-row position-static align-items-center">
+            <div class="profilephoto me-3" style="background-image: url({{recipeUser.photoPath}});"></div>
+            <strong class="d-inline-block mb-2 text-success">{{recipeUser.firstName}} {{recipeUser.lastName}}</strong>
+          </div>
+        <h6>{{likes}} Gostos!</h6>
+        <h3 class="mb-0">{{recipe.name}}</h3>
+        <div class="mb-1 text-muted">{{recipe.creationDate | date:"medium"}}</div>
+        <div class="mb-auto" [innerHTML]="recipe.description"></div>
+        <h3 class="mt-5">Ingredientes</h3>
+            <ul class="list-group list-group-flush mb-5">
+                <li class="list-group-item"
+                *ngFor="let ingredient of recipe.ingredients">
+                {{ingredient.quantity}} {{ingredient.measurement}} {{ingredient.ingredientName}}
+                </li>
+            </ul>
+            <div class="d-grid gap-3 col-md-2">
+              <button type="button" class="btn btn-success btn-sm" (click)="onLike()" *ngIf="!liked">Like</button>
+              <button type="button" class="btn btn-danger btn-sm" (click)="onDislike()"  *ngIf="liked">Dislike</button>
+              <button type="button" class="btn btn-success btn-sm" (click)="onFavourite()" *ngIf="!favourite">Favorito</button>
+              <button type="button" class="btn btn-danger btn-sm" (click)="onRemoveFavourite()"  *ngIf="favourite">Remover Favorito</button>
+            </div>
+        
+        
+      </div>
+      <div class="col-auto d-none d-lg-block recipeImage" style="background-image: url({{recipe.imagePath}});"></div>
+      <div class="col-xs-12" *ngIf="recipe.userId==user.id">
+        <a class="d-block link-dark m-2 text-decoration-none dropdown-toggle" id="dropdownUser1" data-bs-toggle="dropdown" aria-expanded="false"> 
+          Gerir Receita
+        </a>
+        <ul class="dropdown-menu text-small" aria-labelledby="dropdownUser1">
+            <li><a (click)="onEditRecipe()">Editar Receita</a></li>
+            <li><a (click)="onDeleteRecipe()">Apagar Receita</a></li>
+        </ul>
+    </div>
+    </div>        
+</div>
+<div class="col-md-6 mt-5" *ngIf="user.id">
+        <div>
+            <textarea
+            type="text"
+            id="commentArea"
+            rows="3"
+            class="form-control"
+            [(ngModel)]="commentArea"
+            ></textarea>
+        </div>        
+        <div>
+            <button
+            type="button" 
+            class="btn btn-success"            
+            (click)="onSubmit(commentArea)"
+            [disabled]="!commentArea"
+            >Guardar</button>
+        </div>
+        <div class="card m-5 p-2" style="width: 22rem;" *ngFor="let comment of comments">
+            <div class="col mb-3 d-flex flex-row position-static align-items-center">
+                <div class="profilephoto me-3" style="background-image: url({{comment.User.photoPath}});"></div>
+                <strong class="d-inline-block mb-2 text-success">{{comment.User.firstName}} {{comment.User.lastName}}</strong>
+              </div>
+            <div class="card-body">              
+              <p class="card-text">{{comment.comment}}</p>
+            </div>
+</div>
+

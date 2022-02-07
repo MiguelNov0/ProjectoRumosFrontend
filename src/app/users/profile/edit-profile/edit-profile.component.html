@@ -1,0 +1,39 @@
+<div class="container px-5 my-5">
+        <div class="form-floating mb-3">
+            <input class="form-control" id="email" type="email" placeholder="Email" data-sb-validations="required,email" [(ngModel)]="email"/>
+            <label for="email">Email</label>
+        </div>
+        <div class="form-floating mb-3">
+            <input class="form-control" id="confirmacaoDeEmail" type="email" placeholder="Confirmação de Email" data-sb-validations="required,email" [(ngModel)]="email2"/>
+            <label for="confirmacaoDeEmail">Confirmação de Email</label>
+        </div>
+        <div class="d-grid">
+            <button class="btn btn-primary btn-lg" type="button" (click)="onSubmitEmail()" [disabled]="!email||!email2">Alterar Email</button>
+        </div>
+        <div class="form-floating mb-3">
+            <input class="form-control" id="palavraPasse" type="text" placeholder="Palavra-Passe" data-sb-validations="required" [(ngModel)]="pw"/>
+            <label for="palavraPasse">Palavra-Passe</label>
+        </div>
+        <div class="form-floating mb-3">
+            <input class="form-control" id="confirmacaoDePalavraPasse" type="text" placeholder="Confirmação de Palavra-Passe" data-sb-validations="required" [(ngModel)]="pw2"/>
+            <label for="confirmacaoDePalavraPasse">Confirmação de Palavra-Passe</label>
+        </div>
+        <div class="d-grid">
+            <button class="btn btn-primary btn-lg" type="button" (click)="onSubmitPw()" [disabled]="!pw||!pw2">Alterar Palavra-Passe</button>
+        </div>
+        <div class="form-floating mb-3">
+            <input class="form-control" id="UrlImagem" type="text" placeholder="Url da Imagem" data-sb-validations="required" [(ngModel)]="img"/>
+            <label for="UrlImagem">Insira Url da Imagem</label>
+        </div>
+        <div class="d-none" id="submitSuccessMessage">
+            <div class="text-center mb-3">
+                <div class="fw-bolder">Form submission successful!</div>
+            </div>
+        </div>
+        <div class="d-grid">
+            <button class="btn btn-primary btn-lg" type="button" (click)="onSubmitImg()">Alterar Imagem</button>
+        </div>
+        <div class="d-grid">
+            <button class="btn btn-danger btn-lg" type="button" (click)="onDeleteUser()">Eliminar Conta</button>
+        </div>
+</div>

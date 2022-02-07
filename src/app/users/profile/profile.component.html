@@ -1,0 +1,60 @@
+<div class="p-3 bg-blue text-white">
+    <div class="container">          
+      <div class="d-flex flex-wrap align-items-center justify-content-end pe-10">
+        <h3 class="text-white m-3">{{user.firstName}} {{user.lastName}}</h3>
+        <div class="profilephoto m-3" style="background-image: url({{user.photoPath}});"></div> 
+      </div>
+          
+    </div>
+</div>
+<nav class="navbar navbar-light bg-light bg-gradient border-bottom">
+    <div class="container d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarToggleExternalContent" aria-controls="navbarToggleExternalContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <strong class="text-dark ms-2">Editar Perfil</strong>
+    </div>
+  </nav>
+<div class="collapse" id="navbarToggleExternalContent">
+    <div class="bg-white p-4">
+      <hr>
+      <h3 class="fst-italic m-2 text-center">Editar Perfil</h3>
+      <hr>
+      <app-edit-profile></app-edit-profile>
+    </div>
+  </div>
+  <nav class="navbar navbar-light bg-light bg-gradient border-bottom">
+    <div class="container d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarToggleExternalContent2" aria-controls="navbarToggleExternalContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <strong class="text-dark ms-2">Favoritos</strong>
+    </div>
+  </nav>
+<div class="collapse" id="navbarToggleExternalContent2">
+    <div class="bg-white p-4">
+      <hr>
+      <h3 class="fst-italic m-2 text-center">Receitas Favoritadas</h3>
+      <hr>
+      <app-recipe-favourites-list></app-recipe-favourites-list>
+    </div>
+  </div>
+  <hr>
+  <h3 class="fst-italic m-2 text-center">Minhas Receitas</h3>
+  <hr>
+  <div class="container">
+    <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">    
+        <app-recipe-item 
+        *ngFor="let recipeEl of recipes;"
+        [recipe]="recipeEl">
+        </app-recipe-item>
+    </div>
+</div>
+  <hr>
+  <div class="container">
+    <div class="col-xs-12">
+        <a class="btn btn-success"
+        routerLink="/recipes/new">Nova Receita</a>
+    </div>
+</div>
+  
